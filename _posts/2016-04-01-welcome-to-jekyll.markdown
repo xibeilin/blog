@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Welcome to Jekyll! Bowen"
 date:   2016-04-01 18:30:02 +0800
 categories: jekyll update
 ---
