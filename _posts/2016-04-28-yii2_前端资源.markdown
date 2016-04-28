@@ -2,15 +2,14 @@
 layout : post
 title : YII2 前端资源
 date : 2016-04-28
-categories :"YII2"
+category :"YII2"
 ---
 
 
-### YII2 前端资源
 
 - #### 定义资源包
 
-```php
+``` 
 
 <?php
 
