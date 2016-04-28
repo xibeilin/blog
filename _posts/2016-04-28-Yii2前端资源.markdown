@@ -78,7 +78,8 @@ $this->registerCssFile('/css/xx/xx.css', [AppAsset::className(), 'depends' => ''
 
 ```
 
-- ####资源依赖
+- #### 资源依赖
+
 在资源包中的$depends属性，是用来定义抵赖关系的，比如在AppAsset.php中我们定义：
 
 ``` 
