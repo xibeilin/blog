@@ -27,7 +27,7 @@ layout: default
 
 		  {% for post in site.posts %}
 		  <h3>
-			  <a class="post-link" href="{{ post.url | prepend :site.baseurl}}"><span>{{ post.title }}</span></a>
+			  <a class="post-link" target="_blank" href="{{ post.url | prepend :site.baseurl}}"><span>{{ post.title }}</span></a>
 		  </h3>
 		  <p>
 			  <span class="post-meta">{{ post.date | date: "%Y-%m-%d"}}</span>
