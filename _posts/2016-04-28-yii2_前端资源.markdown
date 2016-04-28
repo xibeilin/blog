@@ -1,0 +1,120 @@
+###YII2 前端资源
+
+- ####定义资源包
+
+```
+
+<?php
+
+namespace app\assets;
+
+use yii\web\AssetBundle;
+
+class AppAsset extends AssetBundle
+{
+    public $basePath = '@webroot';
+    public $baseUrl = '@web';
+    public $css = [
+        'css/site.css',
+    ];
+    public $js = [
+    ];
+    public $depends = [
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+    ];
+} 
+```
+
+其中项目中公用的css 和 js 可以分别定义在$css,$js中，对应路径也支持@web等别名。
+
+- #### 使用资源包
+
+在布局layout/main.php(默认，可以定义其他布局文件，然后在对应的controller中定义$layout = 'xxx')中,
+
+```
+use app\assets\AppAsset;
+AppAsset::register($this);  // $this 代表视图对象
+
+```
+
+- #### 加载其他资源
+但是如果某个视图需要额外加载某个资源的话，可以在视图中单独加载，这里只是针对布局中使用的资源配置。具体方法如下：
+
+在AppAsset.php中定义两个方法：
+
+```
+	//定义按需加载JS方法，注意加载顺序在最后
+    public static function addScript($view, $jsfile) {
+        $view->registerJsFile($jsfile, [AppAsset::className(), 'depends' => 'backend\assets\AppAsset']);
+    }
+    
+    //定义按需加载css方法，注意加载顺序在最后
+    public static function addCss($view, $cssfile) {
+        $view->registerCssFile($cssfile, [AppAsset::className(), 'depends' => 'backend\assets\AppAsset']);
+    } 
+```
+
+然后在视图中，直接调用加载即可
+
+```
+AppAsset::addCss($this,'/css/xxx/xx.css');
+AppAsset::addScript($this,'/js/xx/xx.js');
+
+```
+
+需要注意的是加载顺序。
+当然也可以不在AppAsset.php中定义这两种方法，直接在视图中调用：
+
+```
+$this->registerCssFile('/css/xx/xx.css', [AppAsset::className(), 'depends' => '']);
+
+```
+
+- ####资源依赖
+在资源包中的$depends属性，是用来定义抵赖关系的，比如在AppAsset.php中我们定义：
+
+``` 
+	public $depends = [
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+    ];
+```
+就说明依赖YiiAsset和BootstrapAsset，这两个资源包是框架定义好的，我们可以看下具体内容就明白了
+
+```
+<?php
+namespace yii\web;
+
+class YiiAsset extends AssetBundle
+{
+    public $sourcePath = '@yii/assets';
+    public $js = [
+        'yii.js',
+    ];
+    public $depends = [
+        'yii\web\JqueryAsset',
+    ];
+}
+```
+这里可以看到定义的是$sourcePath,@yii/assets 指的的 /vendor/yiisoft/yii2/assets这里的路径，会发现这里恰好有$js中定义的yii.js,但是由于这里的目录是不能供web访问的，所以框架会根据这里的配置，将这里的资源发布到web/assets/下面(或者建立链接的方式，具体可以配置，这里不详细描述)。
+
+在来看$depends,这里定义了依赖JqueryAsset,其实就是依赖jquery.js的，具体也可以看JqueryAsset就会明白。
+
+```
+class JqueryAsset extends AssetBundle
+{
+    public $sourcePath = '@bower/jquery/dist';
+    public $js = [
+        'jquery.js',
+    ];
+}
+```
+所以根据依赖，框架会先加载jquery.js,然后是yii.js,最后是视图加载的js。
+
+
+
+
+
+
+
