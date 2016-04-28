@@ -1,3 +1,11 @@
+---
+layout: post
+title: "JS 获取时间戳"
+date: 2016-04-28
+categories: "JavaScript"
+---
+
+
 ## JS 获取时间戳
 
 JavaScript 获取当前时间戳：

@@ -1,8 +1,16 @@
-###YII2 前端资源
+---
+layout : post
+title : YII2 前端资源
+date : 2016-04-28
+categories :"YII2"
+---
 
-- ####定义资源包
 
-```
+### YII2 前端资源
+
+- #### 定义资源包
+
+```php
 
 <?php
 
@@ -25,6 +33,7 @@ class AppAsset extends AssetBundle
     ];
 } 
 ```
+
 
 其中项目中公用的css 和 js 可以分别定义在$css,$js中，对应路径也支持@web等别名。
 
