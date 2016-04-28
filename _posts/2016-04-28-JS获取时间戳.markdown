@@ -2,7 +2,7 @@
 layout: post
 title: "JS 获取时间戳"
 date: 2016-04-28
-categories: "JavaScript"
+
 ---
 
 
@@ -13,7 +13,8 @@ JavaScript 获取当前时间戳：
 
 1. 第一种方法：
 
-	``` var timestamp =Date.parse(new Date());
+	``` 
+	var timestamp =Date.parse(new Date());
 	```
 	
 	结果：1280977330000
@@ -21,14 +22,16 @@ JavaScript 获取当前时间戳：
 
 2. 第二种方法：
 
-	```var timestamp =(newDate()).valueOf();
+	```
+	var timestamp =(newDate()).valueOf();
 	```
 	
 	结果：1280977330748
 
 3. 第三种方法：
 
-	``` var timestamp=newDate().getTime()；
+	``` 
+	var timestamp=newDate().getTime()；
 	```
 	结果：1280977330748
 
