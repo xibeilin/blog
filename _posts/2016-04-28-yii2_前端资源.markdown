@@ -1,6 +1,6 @@
 ---
 layout : post
-title : YII2 前端资源
+title : "YII2 前端资源"
 date : 2016-04-28
 category :"YII2"
 ---
